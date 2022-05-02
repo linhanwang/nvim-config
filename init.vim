@@ -191,3 +191,9 @@ nmap <leader>e :CocCommand explorer<CR>
 colorscheme gruvbox
 set background=dark
 
+" clang-format
+map <C-K> :pyf ~/software/clang-format.py<cr>
+imap <C-K> <c-o>:pyf ~/software/clang-format.py<cr>
+
+lua require('treesitter')
+
