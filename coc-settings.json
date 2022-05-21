@@ -5,6 +5,7 @@
 	"python.linting.flake8Args": [
 		"--max-line-length=120"
 	],
+	"python.formatting.yapfArgs": ["--style={column_limit=120}"],
 	"explorer.root.customRules": {
 		"vcs": {
 			"patterns": [

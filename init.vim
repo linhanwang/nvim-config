@@ -2,7 +2,11 @@ set nu
 syntax on
 set colorcolumn=120
 set softtabstop=4
+set tabstop=4
 set shiftwidth=4
+set expandtab
+set smartindent
+set termguicolors
 
 call plug#begin('~/.vim/plugged')
 
@@ -12,6 +16,13 @@ Plug 'Yggdroot/indentLine'
 
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -25,10 +36,11 @@ let g:coc_global_extensions = [
 	\ 'coc-git',
 	\ 'coc-explorer',
 	\ 'coc-sh',
-	\ 'coc-pyright',
 	\ 'coc-json',
+	\ 'coc-pyright',
 	\ 'coc-clangd',
-	\ 'coc-cmake'
+	\ 'coc-cmake',
+	\ 'coc-yaml'
       \ ]
 
 " TextEdit might fail if hidden is not set
@@ -184,6 +196,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " IndentLine
 let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
 let g:indent_guides_start_level           = 2  " 从第二层开始可视化显示缩进
+" todo stop conceal quote in json
 
 " We bind it to <leader>e here, feel free to change this
 nmap <leader>e :CocCommand explorer<CR>
@@ -191,9 +204,27 @@ nmap <leader>e :CocCommand explorer<CR>
 colorscheme gruvbox
 set background=dark
 
-" clang-format
-map <C-K> :pyf ~/software/clang-format.py<cr>
-imap <C-K> <c-o>:pyf ~/software/clang-format.py<cr>
+map <C-K> :pyf /home/linhan.wang/software/clang-format.py<cr>
+imap <C-K> <c-o>:pyf /home/linhan.wang/software/clang-format.py<cr>
 
+" treesittet
+" https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
+" It's weired that if you put foldlevel after below lines treesitter highlighting will not work.
+set foldlevel=99
 lua require('treesitter')
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+" lightline
+let g:lightline = { 
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+      \ }
+      \ }
 
