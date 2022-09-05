@@ -23,5 +23,6 @@
 			"bottomUp": true
 		}
 	},
-	"git.addGBlameToVirtualText": true
+  "git.addGBlameToVirtualText": true,
+  "java.format.settings.url": "/home/linhan/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml:q"
 }

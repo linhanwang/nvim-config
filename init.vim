@@ -1,4 +1,6 @@
 set nu
+set relativenumber
+set mouse=a
 syntax on
 set colorcolumn=80
 set softtabstop=4
@@ -40,6 +42,8 @@ let g:coc_global_extensions = [
 	\ 'coc-pyright',
 	\ 'coc-clangd',
 	\ 'coc-cmake',
+	\ 'coc-java',
+	\ 'coc-pairs',
 	\ 'coc-yaml'
       \ ]
 
@@ -226,4 +230,3 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \ }
       \ }
-
